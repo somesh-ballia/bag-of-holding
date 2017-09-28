@@ -10,7 +10,7 @@ base_urlpatterns = [
     url(r'^api/', include('boh_api.urls', namespace='boh_api')),
 
     #url(r'^accounts/login/$', login, name='login'),
-    #url(r'^accounts/logout/$', logout, name='logout'),
+    url(r'^accounts/logout/$', logout, name='logout'),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
