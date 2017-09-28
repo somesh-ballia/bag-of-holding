@@ -6,14 +6,11 @@ from django.contrib.auth.views import login, logout
 
 
 base_urlpatterns = [
+    url(r'^accounts/logout/$', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('boh.urls', namespace='boh')),
     url(r'^api/', include('boh_api.urls', namespace='boh_api')),
-
-    #url(r'^accounts/login/$', login, name='login'),
-    url(r'^accounts/logout/$', logout, name='logout'),
-
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('allauth.urls')),
 ]
 
 # Apply URL_PREFIX setting to all urls
