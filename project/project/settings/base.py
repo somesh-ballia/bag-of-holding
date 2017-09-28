@@ -32,7 +32,17 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'django_filters',
     'widget_tweaks',
+
+    # The Django sites framework is required
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # Login via Google
+    'allauth.socialaccount.providers.google',
 )
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -45,6 +55,26 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    # Default backend -- used to login by username in Django admin
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
 
 ROOT_URLCONF = 'project.urls'
 
@@ -60,10 +90,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Required by allauth template tags
+                "django.core.context_processors.request",
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'project.wsgi.application'
 

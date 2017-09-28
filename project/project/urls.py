@@ -13,6 +13,7 @@ base_urlpatterns = [
     url(r'^accounts/logout/$', logout, name='logout'),
 
     url(r'^admin/', include(admin.site.urls)),
+    #url(r'^accounts/', include('allauth.urls')),
 ]
 
 # Apply URL_PREFIX setting to all urls
