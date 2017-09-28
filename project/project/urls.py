@@ -3,21 +3,17 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
-from allauth.socialaccount.views import SignupView
-from .forms import MySignupForm
 
 
 base_urlpatterns = [
-
-    url(r"^social/signup/$", SignupView.as_view(form_class=MySignupForm), name="account_signup"),
-    url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('boh.urls', namespace='boh')),
     url(r'^api/', include('boh_api.urls', namespace='boh_api')),
 
     #url(r'^accounts/login/$', login, name='login'),
     url(r'^accounts/logout/$', logout, name='logout'),
-    url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('allauth.urls')),
 ]
 
 # Apply URL_PREFIX setting to all urls
