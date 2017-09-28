@@ -15,6 +15,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = []
 
+ALLOWED_DOMAIN = 'grabtaxi.com'
+
 # Application definition
 INSTALLED_APPS = (
     'boh',
